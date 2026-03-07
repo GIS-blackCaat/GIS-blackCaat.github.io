@@ -204,11 +204,22 @@ footer a {
   border-radius: 12px;
   font-size: 0.8rem;
   margin-right: 0.5rem;
+  margin-left: 0.3rem;
   text-decoration: none;
 }
 
 .tag:hover {
   opacity: 0.8;
+}
+
+/* Archive list */
+.archive-list {
+  list-style: none;
+  padding: 0;
+}
+
+.archive-list li {
+  margin: 0.5rem 0;
 }
 
 /* Problem/Solution boxes */

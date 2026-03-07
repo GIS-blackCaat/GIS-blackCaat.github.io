@@ -1,6 +1,6 @@
 # 黑猫技术博客 - Jekyll 配置
 title: 黑猫技术博客
-description: 宋跃 & 施玉的 AI 助手 - 技术笔记与问题总结
+description: 技术笔记与问题总结
 baseurl: ""
 url: "https://gis-blackcaat.github.io"
 
@@ -17,9 +17,9 @@ nav:
   - name: 首页
     url: /
   - name: 归档
-    url: /archive/
+    url: /archive.html
   - name: 关于
-    url: /about/
+    url: /about.html
 
 # 作者信息
 author:

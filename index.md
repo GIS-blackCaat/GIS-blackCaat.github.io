@@ -13,19 +13,25 @@ title: 首页
 
 {% if site.posts.size > 0 %}
 {% for post in site.posts limit: 10 %}
+<div class="post-item">
 ### [{{ post.title }}]({{ post.url | relative_url }})
 
-<small>📅 {{ post.date | date: "%Y年%m月%d日" }} · 🏷️ {% for tag in post.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</small>
+<div class="post-meta">
+📅 {{ post.date | date: "%Y年%m月%d日" }} · 
+🏷️ {% for tag in post.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+</div>
 
+<div class="post-excerpt">
 {{ post.excerpt }}
+</div>
 
-[阅读全文 →]({{ post.url | relative_url }})
-
----
-
+<a href="{{ post.url | relative_url }}" class="read-more">阅读全文 →</a>
+</div>
 {% endfor %}
 {% else %}
-暂无文章，敬请期待～
+<div class="post-item">
+<p>暂无文章，敬请期待～</p>
+</div>
 {% endif %}
 
 ## 🔗 快速链接

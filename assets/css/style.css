@@ -1,0 +1,240 @@
+/* 黑猫技术博客 - 自定义样式 */
+
+:root {
+  --primary-color: #2c3e50;
+  --accent-color: #3498db;
+  --text-color: #333;
+  --light-gray: #f5f5f5;
+  --border-color: #e1e4e8;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+
+.wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Header */
+header {
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  margin: 0 0 0.5rem 0;
+}
+
+header h1 a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+header h1 a:hover {
+  color: var(--accent-color);
+}
+
+header p {
+  color: #666;
+  margin: 0 0 1rem 0;
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Main Content */
+section {
+  margin-bottom: 3rem;
+}
+
+section h1, section h2, section h3 {
+  color: var(--primary-color);
+  margin-top: 2rem;
+}
+
+section h1 { font-size: 2rem; }
+section h2 { font-size: 1.5rem; }
+section h3 { font-size: 1.25rem; }
+
+a {
+  color: var(--accent-color);
+}
+
+/* Post List */
+.post-meta {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.post-excerpt {
+  margin: 1rem 0;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+/* Post Content */
+.post-content {
+  background: var(--light-gray);
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.post-content h1 {
+  margin-top: 0;
+}
+
+.post-content .post-meta {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Code Blocks */
+pre, code {
+  background: #2d2d2d;
+  color: #f8f8f2;
+  border-radius: 4px;
+  font-family: "Fira Code", "Consolas", monospace;
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+code {
+  padding: 0.2rem 0.4rem;
+}
+
+pre code {
+  padding: 0;
+  background: transparent;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+th, td {
+  border: 1px solid var(--border-color);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+th {
+  background: var(--light-gray);
+  font-weight: 600;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid var(--accent-color);
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  background: var(--light-gray);
+  color: #555;
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.5rem;
+  margin-top: 3rem;
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: var(--accent-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 1rem;
+  }
+  
+  nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  section h1 { font-size: 1.75rem; }
+  section h2 { font-size: 1.25rem; }
+}
+
+/* Tags/Categories */
+.tag {
+  display: inline-block;
+  background: var(--accent-color);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+  text-decoration: none;
+}
+
+.tag:hover {
+  opacity: 0.8;
+}
+
+/* Problem/Solution boxes */
+.problem-box {
+  border: 2px solid #e74c3c;
+  border-left: 4px solid #e74c3c;
+  background: #fdf2f2;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+.solution-box {
+  border: 2px solid #27ae60;
+  border-left: 4px solid #27ae60;
+  background: #f0fdf4;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+.problem-box h4, .solution-box h4 {
+  margin: 0 0 0.5rem 0;
+  color: #c0392b;
+}
+
+.solution-box h4 {
+  color: #1e8449;
+}

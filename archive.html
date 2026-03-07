@@ -1,50 +1,265 @@
 ---
 layout: default
-title: 归档
+title: 文章归档
 ---
 
-# 📚 文章归档
+<div class="archive-page">
+  <header class="page-header">
+    <h1>📚 文章归档</h1>
+    <p>按时间顺序浏览所有文章</p>
+  </header>
 
-## 所有文章
+  <section class="archive-section">
+    <h2 class="section-title">📅 按时间归档</h2>
+    
+    {% assign posts_by_year = site.posts | group_by_exp: 'post', 'post.date | date: "%Y"' %}
+    
+    {% for year_group in posts_by_year %}
+    <div class="year-group">
+      <h3 class="year-title">{{ year_group.name }}年</h3>
+      
+      {% assign posts_by_month = year_group.items | group_by_exp: 'post', 'post.date | date: "%m"' %}
+      
+      {% for month_group in posts_by_month %}
+      <div class="month-group">
+        <h4 class="month-title">{{ month_group.name }}月</h4>
+        <ul class="post-list">
+          {% for post in month_group.items %}
+          <li class="archive-post">
+            <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
+            <span class="post-date">{{ post.date | date: "%d日" }}</span>
+            {% if post.categories %}
+            <span class="post-category">{{ post.categories | first }}</span>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </section>
 
-{% for post in site.posts %}
-{% assign current_year = post.date | date: "%Y" %}
-{% assign current_month = post.date | date: "%m" %}
+  <section class="tags-section">
+    <h2 class="section-title">🏷️ 按标签浏览</h2>
+    <div class="tag-cloud">
+      {% assign tags = site.tags | sort %}
+      {% for tag in tags %}
+      <a href="#tag-{{ tag[0] | slugify }}" class="tag-cloud-item">
+        {{ tag[0] }} <span class="tag-count">({{ tag[1].size }})</span>
+      </a>
+      {% endfor %}
+    </div>
+    
+    {% for tag in tags %}
+    <div id="tag-{{ tag[0] | slugify }}" class="tag-posts">
+      <h4>{{ tag[0] }}</h4>
+      <ul class="post-list">
+        {% for post in tag[1] %}
+        <li class="archive-post">
+          <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
+          <span class="post-date">{{ post.date | date: "%Y年%m月%d日" }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </section>
 
-{% if current_year != previous_year %}
-## {{ current_year }}年
-{% endif %}
-
-{% if current_month != previous_month %}
-### {{ current_month }}月
-{% endif %}
-
-<div class="post-item">
-- **{{ post.date | date: "%d日" }}** - [{{ post.title }}]({{ post.url | relative_url }})
-  <div class="post-meta">📁 {{ post.categories | join: ", " }}</div>
+  <section class="stats-section">
+    <h2 class="section-title">📊 统计</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-number">{{ site.posts.size }}</span>
+        <span class="stat-label">篇文章</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">{{ site.categories.size }}</span>
+        <span class="stat-label">个分类</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">{{ site.tags.size }}</span>
+        <span class="stat-label">个标签</span>
+      </div>
+    </div>
+  </section>
 </div>
 
-{% assign previous_year = current_year %}
-{% assign previous_month = current_month %}
-{% endfor %}
+<style>
+.page-header {
+  text-align: center;
+  padding: 2rem 0 3rem;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 3rem;
+}
 
-{% if site.posts.size == 0 %}
-<div class="post-item">
-<p>暂无文章，敬请期待～</p>
-</div>
-{% endif %}
+.page-header h1 {
+  margin: 0 0 0.5rem 0;
+  color: var(--primary-color);
+}
 
----
+.page-header p {
+  color: #666;
+  font-size: 1.1rem;
+  margin: 0;
+}
 
-## 按分类查看
+.section-title {
+  font-size: 1.6rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-color);
+}
 
-{% assign categories = site.categories | sort %}
-{% for category in categories %}
-### {{ category[0] }}
+.archive-section, .tags-section, .stats-section {
+  margin-bottom: 3rem;
+}
 
-<div class="post-item">
-{% for post in category[1] %}
-- [{{ post.title }}]({{ post.url | relative_url }})
-{% endfor %}
-</div>
-{% endfor %}
+.year-group {
+  margin-bottom: 2rem;
+}
+
+.year-title {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  margin: 1.5rem 0 1rem;
+  padding-left: 1rem;
+  border-left: 4px solid var(--accent-color);
+}
+
+.month-group {
+  margin-bottom: 1.5rem;
+}
+
+.month-title {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 1rem 0 0.5rem;
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.archive-post {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border-color);
+  gap: 1rem;
+}
+
+.archive-post:last-child {
+  border-bottom: none;
+}
+
+.post-link {
+  flex: 1;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.post-link:hover {
+  color: var(--accent-color);
+}
+
+.post-date {
+  color: #999;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.post-category {
+  background: var(--light-gray);
+  color: #666;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.tag-cloud-item {
+  display: inline-block;
+  background: var(--light-gray);
+  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.tag-cloud-item:hover {
+  background: var(--accent-color);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.tag-count {
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.tag-posts {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--light-gray);
+  border-radius: 8px;
+}
+
+.tag-posts h4 {
+  margin: 0 0 1rem 0;
+  color: var(--primary-color);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 700;
+  display: block;
+}
+
+.stat-label {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .archive-post {
+    flex-wrap: wrap;
+  }
+  
+  .post-date, .post-category {
+    width: 100%;
+    margin-top: 0.3rem;
+  }
+}
+</style>

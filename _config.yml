@@ -9,6 +9,10 @@ markdown: kramdown
 highlighter: rouge
 permalink: /:year/:month/:day/:title/
 
+# 允许发布未来日期的文章（用于定时发布）
+future: true
+timezone: Asia/Shanghai
+
 # 关闭默认主题，使用自定义 layout
 theme: null
 

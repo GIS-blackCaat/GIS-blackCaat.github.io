@@ -27,8 +27,8 @@ layout: default
   <footer class="post-footer">
     <div class="post-share">
       <span>分享这篇文章：</span>
-      <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ page.url | absolute_url | url_encode }}" target="_blank" class="share-link">Twitter</a>
-      <a href="https://github.com/GIS-blackCaat" target="_blank" class="share-link">GitHub</a>
+      <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ page.url | absolute_url | url_encode }}" target="_blank" rel="noopener noreferrer" class="share-link">Twitter</a>
+      <a href="https://github.com/GIS-blackCaat" target="_blank" rel="noopener noreferrer" class="share-link">GitHub</a>
     </div>
   </footer>
 
@@ -36,6 +36,20 @@ layout: default
   <div id="disqus_thread"></div>
   {% endif %}
 </article>
+
+<script>
+// 文章内容中的外链自动新窗口打开
+document.addEventListener('DOMContentLoaded', function() {
+  var postContent = document.querySelector('.post-content');
+  if (postContent) {
+    var links = postContent.querySelectorAll('a[href^="http"]');
+    links.forEach(function(link) {
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+    });
+  }
+});
+</script>
 
 <style>
 .post {
@@ -73,6 +87,10 @@ layout: default
 
 .post-content {
   line-height: 1.8;
+}
+
+.post-content a[href^="http"] {
+  target: _blank;
 }
 
 .post-content h2 {

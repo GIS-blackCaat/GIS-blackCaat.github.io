@@ -18,7 +18,7 @@
       
       <nav>
         {% for item in site.nav %}
-        <a href="{{ item.url | relative_url }}">{{ item.name }}</a>
+        <a href="{{ item.url | relative_url }}" target="_blank" rel="noopener noreferrer">{{ item.name }}</a>
         {% endfor %}
       </nav>
     </header>
@@ -37,5 +37,15 @@
       </p>
     </footer>
   </div>
+<script>
+// 导航栏链接新窗口打开（如果有）
+document.addEventListener('DOMContentLoaded', function() {
+  var navLinks = document.querySelectorAll('nav a[href^="http"]');
+  navLinks.forEach(function(link) {
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+  });
+});
+</script>
 </body>
 </html>

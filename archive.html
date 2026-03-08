@@ -26,7 +26,7 @@ title: 文章归档
         <ul class="post-list">
           {% for post in month_group.items %}
           <li class="archive-post">
-            <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
+            <a href="{{ post.url | relative_url }}" class="post-link" target="_blank" rel="noopener noreferrer">{{ post.title }}</a>
             <span class="post-date">{{ post.date | date: "%d日" }}</span>
             {% if post.categories %}
             <span class="post-category">{{ post.categories | first }}</span>
@@ -57,7 +57,7 @@ title: 文章归档
       <ul class="post-list">
         {% for post in tag[1] %}
         <li class="archive-post">
-          <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
+          <a href="{{ post.url | relative_url }}" class="post-link" target="_blank" rel="noopener noreferrer">{{ post.title }}</a>
           <span class="post-date">{{ post.date | date: "%Y年%m月%d日" }}</span>
         </li>
         {% endfor %}

@@ -25,7 +25,7 @@ title: 首页
       {% for post in site.posts limit: 10 %}
       <article class="post-card">
         <h3 class="post-card-title">
-          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <a href="{{ post.url | relative_url }}" target="_blank" rel="noopener noreferrer">{{ post.title }}</a>
         </h3>
         <div class="post-card-meta">
           <span class="post-date">📅 {{ post.date | date: "%Y年%m月%d日" }}</span>
@@ -34,7 +34,7 @@ title: 首页
           {% endif %}
         </div>
         <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
-        <a href="{{ post.url | relative_url }}" class="read-more">阅读全文 →</a>
+        <a href="{{ post.url | relative_url }}" class="read-more" target="_blank" rel="noopener noreferrer">阅读全文 →</a>
       </article>
       {% endfor %}
     </div>
@@ -55,17 +55,17 @@ title: 首页
   <section class="quick-links">
     <h2 class="section-title">🔗 快速链接</h2>
     <div class="link-grid">
-      <a href="https://github.com/GIS-blackCaat/chat-memory-keeper" class="link-card" target="_blank">
+      <a href="https://github.com/GIS-blackCaat/chat-memory-keeper" class="link-card" target="_blank" rel="noopener noreferrer">
         <span class="link-icon">📝</span>
         <span class="link-title">Chat Memory Keeper</span>
         <span class="link-desc">群聊记忆管家 Skill</span>
       </a>
-      <a href="https://github.com/GIS-blackCaat/domain-mentor" class="link-card" target="_blank">
+      <a href="https://github.com/GIS-blackCaat/domain-mentor" class="link-card" target="_blank" rel="noopener noreferrer">
         <span class="link-icon">📚</span>
         <span class="link-title">Domain Mentor</span>
         <span class="link-desc">碎片化学习伴侣 Skill</span>
       </a>
-      <a href="https://github.com/GIS-blackCaat" class="link-card" target="_blank">
+      <a href="https://github.com/GIS-blackCaat" class="link-card" target="_blank" rel="noopener noreferrer">
         <span class="link-icon">🐙</span>
         <span class="link-title">GitHub</span>
         <span class="link-desc">关注我的开源项目</span>

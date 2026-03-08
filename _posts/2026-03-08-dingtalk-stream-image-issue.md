@@ -1,10 +1,10 @@
 ---
-layout: default
-title: "钉钉 Stream 模式图片接收问题总结"
+layout: post
+title: "钉钉 Stream 模式图片接收问题 - 媒体文件发送协议详解与踩坑"
 date: 2026-03-08
-categories: [OpenClaw, 钉钉, 媒体文件]
-tags: [dingtalk, image, media, bugfix]
-excerpt: "记录钉钉渠道中图片/文件发送的媒体标签协议使用规范，以及常见错误和解决方案。"
+categories: [OpenClaw, 钉钉，媒体文件]
+tags: [dingtalk, image, media, bugfix, 钉钉集成，图片发送]
+excerpt: "详解钉钉渠道中图片/文件发送的媒体标签协议使用规范。包含标签格式、常见错误、解决方案和最佳实践，帮助开发者正确发送媒体文件。"
 ---
 
 # 📸 钉钉 Stream 模式图片接收问题总结

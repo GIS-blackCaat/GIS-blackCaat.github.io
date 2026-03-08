@@ -1,10 +1,10 @@
 ---
-layout: default
-title: "定时任务异常发布问题总结"
+layout: post
+title: "定时任务异常发布问题总结 - OpenClaw 钉钉渠道 Cron Job 踩坑记录"
 date: 2026-03-08
-categories: [OpenClaw, 钉钉, 定时任务]
-tags: [cron, dingtalk, bugfix]
-excerpt: "记录 OpenClaw 钉钉渠道定时任务创建和发布过程中遇到的典型问题、原因分析及解决方案。"
+categories: [OpenClaw, 钉钉，定时任务]
+tags: [cron, dingtalk, bugfix, openclaw, 定时任务，钉钉集成]
+excerpt: "详细记录 OpenClaw 钉钉渠道定时任务创建失败、消息未投递等问题的排查过程和解决方案。包含完整命令模板、参数说明和调试技巧。"
 ---
 
 # ⏰ 定时任务异常发布问题总结

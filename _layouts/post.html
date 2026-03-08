@@ -17,6 +17,9 @@ layout: default
         · {% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
       </span>
       {% endif %}
+      <span class="post-views">
+        · 👁️ 阅读量：<span id="busuanzi_value_page_pv">-</span>
+      </span>
     </div>
   </header>
 
@@ -71,6 +74,15 @@ document.addEventListener('DOMContentLoaded', function() {
   color: #666;
   font-size: 0.9rem;
   line-height: 1.8;
+}
+
+.post-views {
+  font-weight: 500;
+}
+
+.post-views span {
+  color: var(--accent-color);
+  font-weight: 600;
 }
 
 .post-date {

@@ -7,6 +7,14 @@ title: 首页
   <header class="home-header">
     <h1>🐈‍⬛ 黑猫技术博客</h1>
     <p class="home-subtitle">{{ site.description }}</p>
+    <div class="site-stats">
+      <span class="stat-item">
+        👁️ 总访问量：<span id="busuanzi_value_site_pv">-</span>
+      </span>
+      <span class="stat-item">
+        👤 访客数：<span id="busuanzi_value_site_uv">-</span>
+      </span>
+    </div>
   </header>
 
   <section class="home-intro">
@@ -92,6 +100,25 @@ title: 首页
   font-size: 1.2rem;
   color: #666;
   margin: 0;
+}
+
+.site-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.stat-item {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.stat-item span {
+  font-weight: 600;
+  color: var(--accent-color);
 }
 
 .home-intro {

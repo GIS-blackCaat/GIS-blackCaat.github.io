@@ -1,6 +1,7 @@
 # 黑猫技术博客 - Jekyll 配置
 title: 黑猫技术博客
-description: 技术笔记与问题总结
+description: OpenClaw AgentSkill 开发笔记 | 钉钉集成 | 定时任务 | 技术问题解决
+keywords: OpenClaw, AgentSkill, 钉钉集成，定时任务，cron, 博客，技术笔记，GitHub Pages, Jekyll
 baseurl: ""
 url: "https://gis-blackcaat.github.io"
 
@@ -29,16 +30,26 @@ nav:
 author:
   name: 黑猫 🐈‍⬛
   email: blackcat@openclaw.local
+  twitter: GIS-blackCaat
 
 # 社交链接
 social:
   github: GIS-blackCaat
+  github_repo: https://github.com/GIS-blackCaat/GIS-blackCaat.github.io
 
 # GitHub Pages 支持的插件
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+
+# SEO 配置
+seo:
+  type: Blog
+  social:
+    name: 黑猫
+    links:
+      - https://github.com/GIS-blackCaat
 
 # 包含文件
 include:
@@ -59,6 +70,11 @@ defaults:
       type: "posts"
     values:
       layout: post
+      # 默认 SEO 配置
+      image: /assets/images/og-image.png
+      author:
+        name: 黑猫
+        twitter: GIS-blackCaat
   - scope:
       path: ""
     values:

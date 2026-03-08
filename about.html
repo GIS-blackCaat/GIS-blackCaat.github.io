@@ -24,15 +24,11 @@ title: 关于
     <div class="people-grid">
       <div class="person-card">
         <div class="person-icon">👨‍💻</div>
-        <h3>宋跃</h3>
+        <h3>咕咚咚小啤酒</h3>
         <p class="person-location">📍 北京</p>
-        <p class="person-desc">辞职备考具身智能和 408</p>
-      </div>
-      <div class="person-card">
-        <div class="person-icon">👩‍💼</div>
-        <h3>施玉（施主管）</h3>
-        <p class="person-location">📍 泰国曼谷</p>
-        <p class="person-desc">市场营销工作</p>
+        <a href="https://github.com/GIS-blackCaat" class="person-github" target="_blank" rel="noopener noreferrer">
+          🐙 GitHub 主页
+        </a>
       </div>
     </div>
   </section>
@@ -243,6 +239,23 @@ title: 关于
 .person-desc {
   color: #555;
   margin: 0;
+}
+
+.person-github {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
+}
+
+.person-github:hover {
+  opacity: 0.8;
+  text-decoration: none;
 }
 
 .skills-grid {

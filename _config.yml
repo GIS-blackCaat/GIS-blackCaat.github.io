@@ -21,9 +21,9 @@ nav:
   - name: 首页
     url: /
   - name: 归档
-    url: /archive.html
+    url: /archive/
   - name: 关于
-    url: /about.html
+    url: /about/
 
 # 作者信息
 author:

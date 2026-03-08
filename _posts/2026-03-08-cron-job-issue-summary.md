@@ -156,10 +156,99 @@ openclaw cron run <job-id> --force --expect-final
 
 ---
 
+## 🔥 重要补充：两种定时任务方式的区别
+
+### 方式一：OpenClaw 内部 Cron（推荐用于简单提醒）
+
+**特点**：
+- 通过 `openclaw cron add` 命令创建
+- 任务存储在 OpenClaw 内部数据库中
+- 支持 `--at` 相对时间（如 `20m`）和 `--cron` 表达式
+- 可以通过 `openclaw cron list` 查看
+- 适合一次性提醒或简单循环任务
+
+**查看命令**：
+```bash
+openclaw cron list
+openclaw cron runs --id <job-id> --limit 5
+```
+
+**适用场景**：临时提醒、测试任务、一次性通知
+
+---
+
+### 方式二：系统 Crontab + Webhook（推荐用于生产环境）
+
+**特点**：
+- 通过系统 crontab 直接配置
+- 任务存储在 `/root/.openclaw/cron/dingtalk-tasks`
+- 通过 shell 脚本调用钉钉 webhook 发送
+- **不经过 OpenClaw cron 系统**，所以 `openclaw cron list` 看不到
+- 更稳定，不依赖 OpenClaw 服务状态
+
+**配置文件**：
+```bash
+# /root/.openclaw/cron/dingtalk-tasks
+0 10 * * * /root/.openclaw/scripts/send-dingtalk.sh '提醒内容'
+0 20 * * * /root/.openclaw/scripts/send-dingtalk.sh '提醒内容'
+```
+
+**查看命令**：
+```bash
+# 查看任务配置
+cat /root/.openclaw/cron/dingtalk-tasks
+
+# 查看执行日志
+grep CRON /var/log/syslog
+# 或
+journalctl -u cron -f
+```
+
+**适用场景**：生产环境、关键业务提醒、需要高可靠性的任务
+
+---
+
+### 📊 两种方式对比
+
+| 特性 | OpenClaw Cron | 系统 Crontab |
+|------|---------------|--------------|
+| **配置方式** | `openclaw cron add` 命令 | 编辑 crontab 文件 |
+| **查看命令** | `openclaw cron list` | `cat /root/.openclaw/cron/dingtalk-tasks` |
+| **日志位置** | `openclaw cron runs --id <job-id>` | `/var/log/syslog` |
+| **依赖** | OpenClaw 服务运行中 | 系统 cron 服务 |
+| **灵活性** | 支持 AI 生成内容 | 固定文本内容 |
+| **可靠性** | 依赖 OpenClaw 状态 | 更稳定 |
+| **推荐场景** | 临时/测试任务 | 生产环境关键任务 |
+
+---
+
+### ⚠️ 排查任务时的关键步骤
+
+1. **先确认任务类型**：
+   ```bash
+   # 是 OpenClaw 任务吗？
+   openclaw cron list
+   
+   # 是系统 crontab 任务吗？
+   cat /root/.openclaw/cron/dingtalk-tasks
+   ```
+
+2. **根据类型查看日志**：
+   - OpenClaw 任务 → `openclaw cron runs --id <job-id>`
+   - 系统任务 → `grep CRON /var/log/syslog | tail -20`
+
+3. **常见误区**：
+   - ❌ 用 `openclaw cron list` 找系统 crontab 任务（找不到！）
+   - ❌ 用 `openclaw cron rm` 删除系统任务（删不掉！）
+   - ✅ 系统任务需要直接编辑 `/root/.openclaw/cron/dingtalk-tasks`
+
+---
+
 ## 📚 参考资料
 
 - [dingtalk-cron-job Skill 文档](https://github.com/GIS-blackCaat/chat-memory-keeper/tree/main/skills/dingtalk-cron-job)
 - [OpenClaw Cron 官方文档](https://docs.openclaw.ai)
+- [Linux Crontab 文档](https://man7.org/linux/man-pages/man5/crontab.5.html)
 
 ---
 

@@ -9,19 +9,8 @@
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/black-cat-icon.svg' | relative_url }}">
   <link rel="apple-touch-icon" href="{{ '/assets/images/black-cat-icon.svg' | relative_url }}">
-<!-- 百度统计 -->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?YOUR_BAIDU_TONGJI_ID";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
 <!-- 不蒜子访问统计 -->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 </head>
 <body>
@@ -59,6 +48,28 @@ document.addEventListener('DOMContentLoaded', function() {
     link.setAttribute('target', '_blank');
     link.setAttribute('rel', 'noopener noreferrer');
   });
+});
+</script>
+<!-- 不蒜子计数修正脚本 -->
+<script>
+// 修复不蒜子在某些情况下不显示的问题
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    var pvElement = document.getElementById('busuanzi_value_site_pv');
+    var uvElement = document.getElementById('busuanzi_value_site_uv');
+    var pagePvElement = document.getElementById('busuanzi_value_page_pv');
+    
+    // 如果元素存在但值为空，设置为 0 或提示
+    if (pvElement && !pvElement.innerText) {
+      pvElement.innerText = '统计中...';
+    }
+    if (uvElement && !uvElement.innerText) {
+      uvElement.innerText = '统计中...';
+    }
+    if (pagePvElement && !pagePvElement.innerText) {
+      pagePvElement.innerText = '统计中...';
+    }
+  }, 2000);
 });
 </script>
 </body>
